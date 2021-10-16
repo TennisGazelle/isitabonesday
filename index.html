@@ -1,43 +1,61 @@
 <html>
     <title>Is it a Bones Day?</title>
     <link rel="shortcut icon" type="image/ico" href="./favicon.ico"/>
-    <!-- <style>
-        .wrapper {
-            height: 100vh;
-            /*This part is important for centering*/
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    <style>
+        h1::before {  
+        transform: scaleX(0);
+        transform-origin: bottom right;
         }
-        
-        .typing-demo {
-            width: 22ch;
-            animation: typing 2s steps(22), blink .5s step-end infinite alternate;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 3px solid;
-            font-family: monospace;
-            font-size: 2em;
+
+        h1:hover::before {
+        transform: scaleX(1);
+        transform-origin: bottom left;
         }
-        
-        @keyframes typing {
-            from {
-            width: 0
-            }
+
+        h1::before {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        inset: 0 0 0 0;
+        background: hsl(200 100% 80%);
+        z-index: -1;
+        transition: transform .3s ease;
         }
-            
-        @keyframes blink {
-            50% {
-            border-color: transparent
-            }
+
+        h1 {
+        position: relative;
+        font-size: 5rem;
         }
-    </style> -->
+
+        html {
+        block-size: 100%;
+        inline-size: 100%;
+        }
+
+        body {
+        min-block-size: 100%;
+        min-inline-size: 100%;
+        margin: 0;
+        box-sizing: border-box;
+        display: grid;
+        place-content: center;
+        font-family: system-ui, sans-serif;
+        }
+
+        @media (orientation: landscape) {
+        body {
+            grid-auto-flow: column;
+        }
+        }
+
+    </style>
 
     <body>
         <div class="wrapper">
-            <div id="main" class="typing-demo">
-              It is a Bones Day!
-            </div>
+            <h1 id="main" class="typing-demo">
+              Checking...
+            </h1>
         </div>
     </body>
     <script type="text/javascript">
@@ -46,13 +64,26 @@
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = today.getFullYear();
 
-        today = mm + '/' + dd + '/' + yyyy;
+        var todayString = dd + '-' + mm + '-' + yyyy;
 
-        
-        document.getElementById("main").innerText = today;
-        // let today = new Date()
-        // const x = setInterval(() => {
-        //     mainText.innerText = today.getDate()
-        // }, 0)
+        fetch("http://isitabonesday.com/history.json")
+        .then(response => {
+            response.json().then(history => {
+                if (!(today in Object.keys(history))) {
+                    document.getElementById("main").innerText = 'We don\'t know if it\'s a bones day. :('
+                } else {
+                    if (history[todayString]) {
+                        document.getElementById("main").innerText = 'It is a bones day!'
+                    } else {
+                        document.getElementById("main").innerText = 'It is a no bones day!'
+                    }
+                }
+            }).catch(error => {
+                console.error('json not readable', error)
+            })
+        }).catch(error => {
+            console.error(error)
+        })
+
     </script>
 </html>
