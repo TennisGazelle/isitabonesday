@@ -1,0 +1,58 @@
+<html>
+    <title>Is it a Bones Day?</title>
+    <link rel="shortcut icon" type="image/ico" href="./favicon.ico"/>
+    <!-- <style>
+        .wrapper {
+            height: 100vh;
+            /*This part is important for centering*/
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .typing-demo {
+            width: 22ch;
+            animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid;
+            font-family: monospace;
+            font-size: 2em;
+        }
+        
+        @keyframes typing {
+            from {
+            width: 0
+            }
+        }
+            
+        @keyframes blink {
+            50% {
+            border-color: transparent
+            }
+        }
+    </style> -->
+
+    <body>
+        <div class="wrapper">
+            <div id="main" class="typing-demo">
+              It is a Bones Day!
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = mm + '/' + dd + '/' + yyyy;
+
+        
+        document.getElementById("main").innerText = today;
+        // let today = new Date()
+        // const x = setInterval(() => {
+        //     mainText.innerText = today.getDate()
+        // }, 0)
+    </script>
+</html>
