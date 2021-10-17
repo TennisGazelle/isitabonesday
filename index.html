@@ -74,7 +74,7 @@
 
         var todayString = dd + '-' + mm + '-' + yyyy;
 
-        fetch("http://isitabonesday.com/history.json")
+        fetch("https://isitabonesday.com/history.json")
         .then(response => {
             response.json().then(history => {
                 // console.log(history)
