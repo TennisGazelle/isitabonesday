@@ -1,5 +1,5 @@
 <html>
-    <title>Is it a Bones Day?</title>
+    <title id='title'>Is it a Bones Day?</title>
     <link rel="shortcut icon" type="image/ico" href="./favicon.ico"/>
     <style>
         h1::before {  
@@ -76,18 +76,20 @@
         fetch("http://isitabonesday.com/history.json")
         .then(response => {
             response.json().then(history => {
-                console.log(history)
-                console.log(todayString)
-                console.log(todayString in history)
-                console.log(history[todayString])
+                // console.log(history)
+                // console.log(todayString)
+                // console.log(todayString in history)
+                // console.log(history[todayString])
 
                 if (!(todayString in history)) {
                     document.getElementById("main").innerText = 'We don\'t know :('
                 } else {
                     if (history[todayString]) {
-                        document.getElementById("main").innerText = 'It is a bones day!'
+                        document.getElementById("main").innerText = 'It is a Bones day! 🍖'
+                        document.getElementById("title").innerText = '🍖 A Bones Day! | isitabonesday.com'
                     } else {
-                        document.getElementById("main").innerText = 'It is a no bones day!'
+                        document.getElementById("main").innerText = 'It is a no Bones day! 🦴'
+                        document.getElementById("title").innerText = '🦴 A NO Bones Day! | isitabonesday.com'
                     }
                 }
             }).catch(error => {
