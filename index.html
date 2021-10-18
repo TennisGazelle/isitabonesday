@@ -27,6 +27,7 @@
         h1 {
             position: relative;
             font-size: 5rem;
+            text-shadow: 4px 5px 12px rgba(0,0,0,0.15);
         }
 
         a {
@@ -50,6 +51,14 @@
             font-family: system-ui, sans-serif;
         }
 
+        div {
+            transition: transform 250ms;
+        }
+
+        div:hover {
+            transform: translateY(-10px);
+        }
+
         @media (orientation: landscape) {
             body {
                 grid-auto-flow: column;
@@ -60,10 +69,12 @@
     </style>
 
     <body>
-        <a href="https://github.com/TennisGazelle/isitabonesday" id="wrapper">
-            <h1 id="main" class="typing-demo">
-              Checking...
-            </h1>
+        <div id="container">
+            <a href="https://github.com/TennisGazelle/isitabonesday" id="wrapper">
+                <h1 id="main" class="typing-demo">
+                Checking...
+                </h1>
+            </a>
         </div>
     </body>
     <script type="text/javascript">
