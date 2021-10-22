@@ -35,7 +35,7 @@ if __name__ == '__main__':
         history_file.close()
 
     # update
-    history[date_key] = args.bones
+    history[date_key] = { "bones": args.bones }
 
     # write
     with open(history_file_path, 'w') as history_file:

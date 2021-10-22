@@ -27,7 +27,7 @@
         h1 {
             position: relative;
             font-size: 5rem;
-            text-shadow: 4px 5px 12px rgba(0,0,0,0.15);
+            /* text-shadow: 5px 5px 5px rgba(0,0,0,0.25); */
         }
 
         a {
@@ -52,11 +52,21 @@
         }
 
         div {
-            transition: transform 250ms;
+            transition: transform 250ms;   
         }
 
         div:hover {
             transform: translateY(-10px);
+            text-shadow: 0px 17px 15px rgba(0,0,0,0.15);
+        }
+
+        #main {
+            text-shadow: 0px 7px 10px rgba(0,0,0,0.25);
+            transition: text-shadow 250ms;
+        }
+
+        #main:hover {
+            text-shadow: 0px 17px 15px rgba(0,0,0,0.15);
         }
 
         @media (orientation: landscape) {
@@ -93,10 +103,10 @@
                 // console.log(todayString in history)
                 // console.log(history[todayString])
 
-                if (!(todayString in history)) {
+                if (!(todayString in history) || !('bones' in history[todayString])) {
                     document.getElementById("main").innerText = 'We don\'t know :('
                 } else {
-                    if (history[todayString]) {
+                    if (history[todayString]['bones']) {
                         document.getElementById("main").innerText = 'It is a Bones day! 🍖'
                         document.getElementById("title").innerText = '🍖 A Bones Day! | isitabonesday.com'
                     } else {
@@ -106,6 +116,7 @@
                 }
             }).catch(error => {
                 console.error('json not readable', error)
+                console.log('history: ', response)
             })
         }).catch(error => {
             console.error(error)
