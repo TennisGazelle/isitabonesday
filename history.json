@@ -1,32 +1,35 @@
 {
    "15-10-2021": {
-       "bones": true
+      "bones": true
    },
    "16-10-2021": {
-       "bones": true
+      "bones": true
    },
    "17-10-2021": {
-       "bones": false
+      "bones": false
    },
    "18-10-2021": {
-        "bones": true
-    },
+      "bones": true
+   },
    "19-10-2021": {
-        "bones": false
-    },
+      "bones": false
+   },
    "20-10-2021": {
-        "bones": true
-    },
+      "bones": true
+   },
    "21-10-2021": {
-        "bones": false
-    },
+      "bones": false
+   },
    "22-10-2021": {
-        "bones": false
-    },
+      "bones": false
+   },
    "23-10-2021": {
       "bones": true
    },
    "24-10-2021": {
+      "bones": true
+   },
+   "25-10-2021": {
       "bones": true
    }
 }
