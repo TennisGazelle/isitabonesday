@@ -1,6 +1,11 @@
 <html>
-    <title id='title'>Is it a Bones Day?</title>
-    <link rel="shortcut icon" type="image/ico" href="./favicon.ico"/>
+    <head>
+        <title id='title'>Is it a Bones Day?</title>
+        <meta name="description" content="Noodles The Pug chooses if it's a bones day, we report it.">
+        <link rel="canonical" href="https://isitabonesday.com/" />
+        <link rel="shortcut icon" type="image/ico" href="./favicon.ico"/>   
+        <meta name=”robots” content=”index, follow”>
+    </head>
     <style>
         /* Stolen From: https://codepen.io/argyleink/pen/poEjvpd */
         h1::before {  
@@ -74,8 +79,6 @@
                 grid-auto-flow: column;
             }
         }
-        
-
     </style>
 
     <body>
@@ -95,23 +98,33 @@
 
         var todayString = dd + '-' + mm + '-' + yyyy;
 
+        const shrugs = ['🤷🏻', '🤷🏼', '🤷🏽', '🤷🏾', '🤷🏿'];
+        const shrug = shrugs[Math.floor(Math.random()*shrugs.length)]
+        console.log(shrug)
+
+        // fetch("http://127.0.0.1:8887/history.json") // served locally with https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb/related?hl=en
         fetch("https://isitabonesday.com/history.json")
         .then(response => {
             response.json().then(history => {
-                // console.log(history)
-                // console.log(todayString)
-                // console.log(todayString in history)
-                // console.log(history[todayString])
+                console.log(history)
+                console.log(todayString)
+                console.log(todayString in history)
+                console.log(history[todayString])
 
-                if (!(todayString in history) || !('bones' in history[todayString])) {
-                    document.getElementById("main").innerText = 'We don\'t know :('
+                if (history['noodles']['dead']) {
+                    document.getElementById("main").innerText = 'RIP Noodles (2008-2021)'
+                } else if (!(todayString in history)) {
+                    document.getElementById("main").innerText = 'We don\'t know ' + shrug
                 } else {
                     if (history[todayString]['bones']) {
                         document.getElementById("main").innerText = 'It is a Bones day! 🍖'
-                        document.getElementById("title").innerText = '🍖 A Bones Day! | isitabonesday.com'
+                        document.getElementById("title").innerText = '🍖 Bones Day! | isitabonesday.com'
+                    } else if (history[todayString]['rest']) {
+                        document.getElementById("main").innerText = 'Noodles is taking a break! 💤'
+                        document.getElementById("title").innerText = '💤 | isitabonesday.com'
                     } else {
                         document.getElementById("main").innerText = 'It is a No Bones day! 🦴'
-                        document.getElementById("title").innerText = '🦴 A NO Bones Day! | isitabonesday.com'
+                        document.getElementById("title").innerText = '🦴 NO Bones Day! | isitabonesday.com'
                     }
                 }
             }).catch(error => {

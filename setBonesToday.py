@@ -17,6 +17,7 @@ history_file_path = f"{local_path}/history.json"
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=f'Update isitabonesday.com for {date_key}')
     parser.add_argument('-b', '--bones', action='store_const', const=True, default=False)
+    parser.add_argument('-r', '--rest', action='store_const', const=True, default=False)
     args = parser.parse_args()
     print(date_key, args.bones)
 
@@ -35,7 +36,10 @@ if __name__ == '__main__':
         history_file.close()
 
     # update
-    history[date_key] = { "bones": args.bones }
+    history[date_key] = {
+        "bones": args.bones,
+        "rest": args.rest,
+    }
 
     # write
     with open(history_file_path, 'w') as history_file:

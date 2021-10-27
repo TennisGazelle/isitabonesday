@@ -1,4 +1,8 @@
 {
+   "noodles": {
+      "dead": false,
+      "merch": "https://noodleofficial.threadless.com"
+   },
    "15-10-2021": {
       "bones": true
    },
@@ -34,5 +38,8 @@
    },
    "26-10-2021": {
       "bones": false
+   },
+   "27-10-2021": {
+      "rest": true
    }
 }
