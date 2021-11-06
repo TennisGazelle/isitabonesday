@@ -149,6 +149,10 @@
                 } else if (!(todayString in history)) {
                     document.getElementById("main").innerText = 'We don\'t know ' + shrug
                 } else {
+                    if (history[todayString]['tiktok']) {
+                        document.getElementById("wrapper").href = history[todayString]['tiktok']
+                    }
+
                     if (history[todayString]['bones']) {
                         document.getElementById("main").innerText = 'It is a Bones day! 🍖'
                         document.getElementById("title").innerText = '🍖 Bones Day! | isitabonesday.com'
